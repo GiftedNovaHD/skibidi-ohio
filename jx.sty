@@ -1,0 +1,239 @@
+% Personal sty file 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                        %
+%   ██████╗ ██╗███████╗████████╗███████╗██████╗ ███╗   ██╗ ██████╗ ██╗   ██╗ █████╗      %
+%  ██╔════╝ ██║██╔════╝╚══██╔══╝██╔════╝██╔══██╗████╗  ██║██╔═══██╗██║   ██║██╔══██╗     %
+%  ██║  ███╗██║█████╗     ██║   █████╗  ██║  ██║██╔██╗ ██║██║   ██║██║   ██║███████║     %
+%  ██║   ██║██║██╔══╝     ██║   ██╔══╝  ██║  ██║██║╚██╗██║██║   ██║╚██╗ ██╔╝██╔══██║     %
+%  ╚██████╔╝██║██║        ██║   ███████╗██████╔╝██║ ╚████║╚██████╔╝ ╚████╔╝ ██║  ██║     %
+%   ╚═════╝ ╚═╝╚═╝        ╚═╝   ╚══════╝╚═════╝ ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝  ╚═╝  ╚═╝     %
+%                                                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Some macros were taken from: https://github.com/vEnhance/dotfiles/blob/main/texmf/tex/latex/evan/evan.sty
+
+%%%% Packages %%%% 
+
+%% Page Dimensions 
+\usepackage[a4paper, top=0.5in, bottom=0.2in, left=0.5in, right=0.5in, footskip=0.3in, includefoot]{geometry} 
+
+%% Hyperref Metadata and Link Display 
+\usepackage{hyperref} 
+\hypersetup{
+  pdfauthor={To fill in}, 
+  pdfsubject={To fill in}, 
+  pdfproducer={To fill in}, 
+  pdftoolbar=true, 
+  pdfmenubar=true,
+  urlcolor=violet, 
+  citecolor=green, 
+  filecolor=magenta
+} 
+
+%% Math-related Packages %%
+\RequirePackage{amsthm}
+\RequirePackage{tcolorbox} 
+\RequirePackage[svgnames, table, dvipsnames]{xcolor} 
+
+\usepackage{amsmath, amssymb, amsthm, amsfonts}
+\usepackage{thmtools}
+\usepackage{mathtools} 
+\usepackage{pifont} % For unusual fonts: https://ctan.org/pkg/pifont
+\usepackage{derivative} % For nice and easy derivatives: https://ctan.org/pkg/derivative 
+% \usepackage[nameinlink]{cleveref}
+
+%%%% Theorem Styles %%%%
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{shadows}
+% https://tex.stackexchange.com/a/292090/76888
+% https://github.com/marcodaniel/mdframed/issues/12
+\usepackage{xpatch}
+\xpatchcmd{\endmdframed}
+  {\aftergroup\endmdf@trivlist\color@endgroup}
+  {\endmdf@trivlist\color@endgroup\@doendpe}
+  {}{}
+  \mdfdefinestyle{mdbluebox}{%
+  roundcorner=10pt,
+  linewidth=1pt,
+  skipabove=12pt,
+  innerbottommargin=9pt,
+  skipbelow=2pt,
+  linecolor=blue,
+  nobreak=true,
+  backgroundcolor=TealBlue!5,
+}
+\declaretheoremstyle[
+  headfont=\sffamily\bfseries\color{MidnightBlue},
+  mdframed={style=mdbluebox},
+  headpunct={\\[3pt]},
+  postheadspace={0pt}
+]{thmbluebox}
+
+\mdfdefinestyle{mdredbox}{%
+  linewidth=0.5pt,
+  skipabove=12pt,
+  frametitleaboveskip=5pt,
+  frametitlebelowskip=0pt,
+  skipbelow=2pt,
+  frametitlefont=\bfseries,
+  innertopmargin=4pt,
+  innerbottommargin=8pt,
+  nobreak=true,
+  backgroundcolor=Salmon!5,
+  linecolor=RawSienna,
+}
+\declaretheoremstyle[
+  headfont=\bfseries\color{RawSienna},
+  mdframed={style=mdredbox},
+  headpunct={\\[3pt]},
+  postheadspace={0pt},
+]{thmredbox}
+
+\mdfdefinestyle{mdgreenbox}{%
+  skipabove=8pt,
+  skipbelow=0pt,
+  linewidth=2pt,
+  rightline=false,
+  leftline=true,
+  topline=false,
+  bottomline=false,
+  linecolor=ForestGreen,
+  backgroundcolor=ForestGreen!5,
+}
+\declaretheoremstyle[
+  headfont=\bfseries\sffamily\color{ForestGreen!70!black},
+  bodyfont=\normalfont,
+  spaceabove=2pt,
+  spacebelow=1pt,
+  mdframed={style=mdgreenbox},
+  headpunct={ --- },
+]{thmgreenbox}
+
+\mdfdefinestyle{mdblackbox}{%
+  skipabove=8pt,
+  linewidth=3pt,
+  rightline=false,
+  leftline=true,
+  topline=false,
+  bottomline=false,
+  linecolor=black,
+  backgroundcolor=RedViolet!5!gray!5,
+}
+\declaretheoremstyle[
+  headfont=\bfseries,
+  bodyfont=\normalfont\small,
+  spaceabove=0pt,
+  spacebelow=0pt,
+  mdframed={style=mdblackbox}
+]{thmblackbox}
+
+\mdfdefinestyle{mdpurplebox}{%
+  roundcorner=10pt,
+  linewidth=1pt,
+  skipabove=12pt,
+  skipbelow=12pt,
+  innertopmargin=9pt,
+  innerbottommargin=9pt,
+  linecolor=black,
+  nobreak=true,
+  backgroundcolor=Orchid!10,
+  shadow=true,
+  shadowsize=6pt,
+  shadowcolor=black!30,
+  frametitleaboveskip=8pt,
+  frametitlebelowskip=8pt,
+  frametitlebackgroundcolor=Violet!50!black,
+  frametitlefont=\bfseries\sffamily\color{white},
+  frametitlerule=true,
+}
+\newcommand{\listhack}{$\empty$\vspace{-2em}}
+
+\theoremstyle{definition} 
+\declaretheorem[style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
+\declaretheorem[style=thmbluebox,name=Lemma,sibling=theorem]{lemma}
+\declaretheorem[style=thmbluebox,name=Proposition,sibling=theorem]{proposition}
+\declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
+\declaretheorem[style=thmbluebox,name=Assumption,sibling=theorem]{assume}
+\declaretheorem[style=thmbluebox,name=Theorem,numbered=no]{theorem*}
+\declaretheorem[style=thmbluebox,name=Lemma,numbered=no]{lemma*}
+\declaretheorem[style=thmbluebox,name=Proposition,numbered=no]{proposition*}
+\declaretheorem[style=thmbluebox,name=Corollary,numbered=no]{corollary*}
+\declaretheorem[style=thmbluebox,name=Assumption,numbered=no]{assume*}
+\declaretheorem[style=thmgreenbox,name=Algorithm,sibling=theorem]{algorithm}
+\declaretheorem[style=thmgreenbox,name=Algorithm,numbered=no]{algorithm*}
+\declaretheorem[style=thmgreenbox,name=Claim,sibling=theorem]{claim}
+\declaretheorem[style=thmgreenbox,name=Claim,numbered=no]{claim*}
+\declaretheorem[style=thmredbox,name=Example,sibling=theorem]{example}
+\declaretheorem[style=thmredbox,name=Example,numbered=no]{example*}
+
+\declaretheorem[style=thmblackbox,name=Remark,sibling=theorem]{remark}
+\declaretheorem[style=thmblackbox,name=Remark,numbered=no]{remark*}
+
+\declaretheorem[style=basehead,name=Answer,sibling=theorem]{answer}
+\declaretheorem[style=basehead,name=Answer,numbered=no]{answer*}
+\declaretheorem[style=basehead,name=Conjecture,sibling=theorem]{conjecture}
+\declaretheorem[style=basehead,name=Conjecture,numbered=no]{conjecture*}
+\declaretheorem[style=basehead,name=Definition,sibling=theorem]{definition}
+\declaretheorem[style=basehead,name=Definition,numbered=no]{definition*}
+\declaretheorem[style=basehead,name=Exercise,sibling=theorem]{exercise}
+\declaretheorem[style=basehead,name=Exercise,numbered=no]{exercise*}
+\declaretheorem[style=basehead,name=Fact,sibling=theorem]{fact}
+\declaretheorem[style=basehead,name=Fact,numbered=no]{fact*}
+\declaretheorem[style=basehead,name=Problem,sibling=theorem]{problem}
+\declaretheorem[style=basehead,name=Problem,numbered=no]{problem*}
+\declaretheorem[style=basehead,name=Question,sibling=theorem]{ques}
+\declaretheorem[style=basehead,name=Question,numbered=no]{ques*}
+% \newtheorem{Definition}{Definition}[section] 
+% \newtheorem{Theorem}{Theorem}[section] 
+% \newtheorem{Proposition}{Proposition}[section]
+% \newtheorem{Lemma}{Lemma}[section]
+% \newtheorem{Example}{Example}[section]
+% \newtheorem{Corollary}{Corollary}[section]
+% \newtheorem{Remark}{Remark}[section]
+% \newtheorem{Question}{Question}[section]
+
+
+%%%% Macros %%%% 
+\newcommand{\mailto}[1]{\href{mailto:#1}{\texttt{#1}}}
+
+\newcommand{\ol}{\overline} 
+\newcommand{\ul}{\underline} 
+\newcommand{\wt}{\widetilde} 
+\newcommand{\wh}{\widehat}
+\newcommand{\eps}{\varepsilon}
+
+% Delimiters / Grouping Symbols 
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\seg}[1]{\overline{#1}}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor} % Floor Function
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+
+%% Math Symbols %% 
+% The basics 
+\newcommand{\CC}{\mathbb C}     % The set of complex numbers, or otherwise
+\newcommand{\FF}{\mathbb F}     % A field, or otherwise
+\newcommand{\NN}{\mathbb N}     % The set of natural numbers, or otherwise
+\newcommand{\QQ}{\mathbb Q}     % The set of rational numbers, or otherwise
+\newcommand{\RR}{\mathbb R}     % The set of real numbers, or otherwise
+\newcommand{\ZZ}{\mathbb Z}     % The set of integers, or otherwise 
+\newcommand{\dg}{^\circ}        % The degree of some value
+\newcommand{\inv}{^{-1}}        % The inverse of an expression
+\newcommand{\injto}{\hookrightarrow} % The "injective" operator; denotes some set is injective to another set of elements
+\newcommand{\surjto}{\twoheadrightarrow} % The "surjective" operator; denotes some set is surjective to another set of elements 
+\newcommand{\On}{\mathrm{On}}   % Ordinals
+
+% Script letters 
+\newcommand{\SA}{\mathcal A}
+\newcommand{\SB}{\mathcal B}
+\newcommand{\SC}{\mathcal C}
+\newcommand{\SF}{\mathcal F}
+\newcommand{\SG}{\mathcal G}
+\newcommand{\SH}{\mathcal H}
+\newcommand{\OO}{\mathcal O}
+
+% Operators 
+\newcommand{\tm}{^{\intercal}} % (Matrix) Transpose
+\newcommand{\itm}{^{- \intercal}} % Inverse (Matrix) Transpose 
+
+% Math-related Environments
